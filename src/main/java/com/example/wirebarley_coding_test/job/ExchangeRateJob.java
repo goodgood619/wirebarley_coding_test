@@ -25,7 +25,11 @@ public class ExchangeRateJob implements Job {
   public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
     logger.info("매 30초 마다 실행 되는지 확인"
         + "");
-    batchService.batchCheckExchangeRate();
+    try {
+      batchService.batchCheckExchangeRate();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
 
