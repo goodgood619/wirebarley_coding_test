@@ -43,14 +43,22 @@
       <scope>test</scope>
     </dependency>
 
-  <!--    for restTemplate config-->
+    <!--    for restTemplate config-->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
       <version>4.5.13</version>
     </dependency>
 
+    <!-- spring-boot-starter-validation -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+      <version>2.6.4</version>
+    </dependency>
+
   </dependencies>
+
 
   <build>
     <plugins>
