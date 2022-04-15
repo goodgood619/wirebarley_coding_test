@@ -1,2 +1,5 @@
 server:
   port: 28080
+
+exchangeRate:
+  key: b31c4166759548a169cd2a296d7c97e0
