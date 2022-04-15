@@ -1,7 +1,10 @@
 package com.example.wirebarley_coding_test.util.exchangeRate;
 
+import com.example.wirebarley_coding_test.exception.ExchangeRateException;
+import com.example.wirebarley_coding_test.exception.ExchangeRateException.ExchangeRateExceptionCode;
 import com.example.wirebarley_coding_test.model.ExchangeFromUSD;
 import com.example.wirebarley_coding_test.model.ExchangeRateVO;
+import com.example.wirebarley_coding_test.util.exception.LogUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -41,13 +44,13 @@ public class ExchangeRateUtil {
     this.currentExchangeList = currentExchangeList;
   }
 
-  public void getExchangeRate(String endpoint) throws Exception {
+  public boolean getExchangeRate() throws ExchangeRateException {
 
-    String test = EarnExchangeRate(endpoint, livePrefix);
-
+    String test = EarnExchangeRate(livePrefix);
+    return test.equals("success");
   }
 
-  private String EarnExchangeRate(String endpoint, String prefix) throws Exception {
+  private String EarnExchangeRate(String prefix) throws ExchangeRateException {
     String result = null;
     try {
       UriComponentsBuilder builder = UriComponentsBuilder
@@ -64,7 +67,8 @@ public class ExchangeRateUtil {
 
       makeCurrentExchangeRateList(quotes);
     } catch (Exception e) {
-      throw new Exception(e);
+      LogUtil.error(e);
+      throw new ExchangeRateException(ExchangeRateExceptionCode.NOT_AVAILABLE);
     }
     result = "success";
     return result;
