@@ -1,5 +1,6 @@
 package com.example.wirebarley_coding_test.batch;
 
+import com.example.wirebarley_coding_test.exception.ExchangeRateException;
 import com.example.wirebarley_coding_test.util.exchangeRate.ExchangeRateUtil;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -20,9 +21,9 @@ public class BatchService {
     this.currentExchangeList = currentExchangeList;
   }
 
-  public void batchCheckExchangeRate() throws Exception {
+  public void batchCheckExchangeRate() throws ExchangeRateException {
 
-    exchangeRateUtil.getExchangeRate("test");
+    boolean result = exchangeRateUtil.getExchangeRate();
 
     logger.info(currentExchangeList.toString());
   }

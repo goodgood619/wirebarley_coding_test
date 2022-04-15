@@ -1,6 +1,7 @@
 package com.example.wirebarley_coding_test.job;
 
 import com.example.wirebarley_coding_test.batch.BatchService;
+import com.example.wirebarley_coding_test.exception.ExchangeRateException;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -27,7 +28,7 @@ public class ExchangeRateJob implements Job {
         + "");
     try {
       batchService.batchCheckExchangeRate();
-    } catch (Exception e) {
+    } catch (ExchangeRateException e) {
       e.printStackTrace();
     }
   }
