@@ -7,6 +7,7 @@ import com.example.wirebarley_coding_test.model.ExchangeRateVO;
 import com.example.wirebarley_coding_test.util.exception.LogUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
+import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +29,8 @@ public class ExchangeRateUtil {
   private final RestTemplate restTemplate;
   private final ObjectMapper objectMapper;
 
-  private final Map<String, Double> currentExchangeList;
+  @Resource
+  private Map<String, Double> currentExchangeList;
 
   private final String exchangeRateEndpoint = "http://api.currencylayer.com";
   private final String livePrefix = "/live";
@@ -38,10 +40,9 @@ public class ExchangeRateUtil {
   private final String changePrefix = "/change";
 
   public ExchangeRateUtil(RestTemplate restTemplate,
-      ObjectMapper objectMapper, Map<String, Double> currentExchangeList) {
+      ObjectMapper objectMapper) {
     this.restTemplate = restTemplate;
     this.objectMapper = objectMapper;
-    this.currentExchangeList = currentExchangeList;
   }
 
   public boolean getExchangeRate() throws ExchangeRateException {
