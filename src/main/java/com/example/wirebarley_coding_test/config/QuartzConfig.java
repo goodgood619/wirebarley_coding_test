@@ -27,7 +27,7 @@ public class QuartzConfig {
     return TriggerBuilder.newTrigger().forJob(checkExchangeRate)
         .withIdentity("checkExchangeRate")
         .withDescription("earn Exchange Rate")
-        .withSchedule(cronSchedule("0/30 * * * * ?")) // 30초 간격으로 최신화
+        .withSchedule(cronSchedule("0 0/2 * * * ?")) // 2분마다 간격으로 최신화 (30초 였는데, 무료 API 호출 횟수 제한)
         .build();
   }
 

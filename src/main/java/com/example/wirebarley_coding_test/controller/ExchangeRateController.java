@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,13 +23,20 @@ public class ExchangeRateController {
   private Map<String, Double> currentExchangeList;
 
   // 환율 정보 반환
-  @GetMapping("")
-  public CommonResponse getExchangeRate() {
+  @GetMapping
+  public CommonResponse getExchangeRate(@RequestParam(value = "fromSend") String fromSend,
+      @RequestParam(value = "toSend") String toSend) {
+
     if (currentExchangeList.isEmpty()) {
       throw new ExchangeRateException(ExchangeRateExceptionCode.EMPTY);
     }
 
-    return new CommonResponse<>(currentExchangeList, CommonResponseCode.SUCCESS);
+    StringBuilder sb = new StringBuilder();
+    sb.append(fromSend).append(toSend);
+
+    Double curExchangeMoney = currentExchangeList.get(sb.toString());
+
+    return new CommonResponse<>(curExchangeMoney, CommonResponseCode.SUCCESS);
   }
 
   // 수취 금액 반환

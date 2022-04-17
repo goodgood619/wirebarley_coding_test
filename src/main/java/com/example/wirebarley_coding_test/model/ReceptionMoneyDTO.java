@@ -20,7 +20,6 @@ public class ReceptionMoneyDTO {
   @Positive
   private Integer receptionMoney;
 
-
   public String getFromSend() {
     return fromSend;
   }
