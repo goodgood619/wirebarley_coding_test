@@ -5,7 +5,7 @@ import com.example.wirebarley_coding_test.util.ResponseCode;
 public class InvalidInputValueException extends CommonException {
 
   public enum InvalidInputValueExceptionCode implements ResponseCode {
-    INVALID_INPUT_VALUE("IIV-001", "invalid input value");
+    INVALID_INPUT_VALUE("IIV-001", "송금액이 올바르지 않습니다.");
 
     private String code;
     private String message;
