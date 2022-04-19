@@ -6,6 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+
 public class ReceptionMoneyDTO {
 
   @NotNull
@@ -19,6 +20,12 @@ public class ReceptionMoneyDTO {
   @Max(value = 10000, message = "송금액이 바르지 않습니다")
   @Positive
   private Integer receptionMoney;
+
+  public ReceptionMoneyDTO(String fromSend, String toSend, int receptionMoney) {
+    this.fromSend = fromSend;
+    this.toSend = toSend;
+    this.receptionMoney = receptionMoney;
+  }
 
   public String getFromSend() {
     return fromSend;
