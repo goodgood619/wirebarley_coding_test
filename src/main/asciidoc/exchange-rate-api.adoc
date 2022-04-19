@@ -1,0 +1,23 @@
+= Exchange API Document
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+:docversion: 1.0.0
+
+== ExchangeRate - 환율 조회
+
+MethodName:: `ExchangeRateController.getExchangeRate`
+include::{snippets}/exchange-rate-controller-test/get-exchange-rate-test/request-parameters.adoc[]
+include::{snippets}/exchange-rate-controller-test/get-exchange-rate-test/http-request.adoc[]
+include::{snippets}/exchange-rate-controller-test/get-exchange-rate-test/response-fields.adoc[]
+include::{snippets}/exchange-rate-controller-test/get-exchange-rate-test/http-response.adoc[]
+
+== ExchangeRate - 송금액 관련
+
+MethodName:: `ExchangeRateController.getReceptionMoneyTest`
+include::{snippets}/exchange-rate-controller-test/get-reception-money-test/http-request.adoc[]
+include::{snippets}/exchange-rate-controller-test/get-reception-money-test/response-fields.adoc[]
+include::{snippets}/exchange-rate-controller-test/get-reception-money-test/http-response.adoc[]
