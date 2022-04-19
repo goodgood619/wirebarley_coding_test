@@ -24,7 +24,7 @@ public class ExchangeRateJob implements Job {
 
   @Override
   public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-    logger.info("매 30초 마다 실행 되는지 확인"
+    logger.info("매 2분 마다 실행 되는지 확인"
         + "");
     try {
       batchService.batchCheckExchangeRate();
