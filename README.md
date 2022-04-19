@@ -4,6 +4,27 @@
 
 * [테스트 출처](https://github.com/wirebarley/apply/blob/master/coding_test.md)
 
+<br/>
+
+## Docker로 테스트 하기
+
+* Docker가 깔린 환경이라고 가정하고 작성 되었습니다!!
+* `Dockerfile이 있는 directory 위치`에서 아래의 명령어를 실행해줍니다.
+
+```docker
+docker build -t wirebarley-test-back .
+```
+
+* docker-compose를 이용하여 프로그램을 실행시켜줍니다.
+* `docker-compose가 있는 directory 위치`에서 아래의 명령어를 실행해줍니다.
+
+```docker
+docker-compose up -d
+```
+
+* localhost:3000 으로 들어가서 제대로 동작하는지 확인해 봅니다.
+    * react 기본 port 번호 (port 변경시 docker-compose 참고)
+
 ### 기능
 
 ---
