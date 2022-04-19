@@ -10,6 +10,8 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 @Configuration
 public class ObjectMapperConfig {
 
+  // 단순히, Field값만 사용하고 기존의 Getter, Setter를 사용하고 싶지 않은경우
+  // 단 Jackson 2.0이상에서 동작
   @Bean
   public ObjectMapper objectMapper() {
     return Jackson2ObjectMapperBuilder

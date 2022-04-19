@@ -26,18 +26,14 @@ public class ExchangeRateUtil {
   @Value("${exchangeRate.key}")
   String accessKey;
 
+  @Value("${exchangeRateEndpoint}")
+  String exchangeRateEndpoint;
+
   private final RestTemplate restTemplate;
   private final ObjectMapper objectMapper;
 
   @Resource
   private Map<String, Double> currentExchangeList;
-
-  private final String exchangeRateEndpoint = "http://api.currencylayer.com";
-  private final String livePrefix = "/live";
-  private final String historicalPrefix = "/historical";
-  private final String convertPrefix = "/convert";
-  private final String timeframePrefix = "/timeframe";
-  private final String changePrefix = "/change";
 
   public ExchangeRateUtil(RestTemplate restTemplate,
       ObjectMapper objectMapper) {
@@ -45,7 +41,7 @@ public class ExchangeRateUtil {
     this.objectMapper = objectMapper;
   }
 
-  public boolean getExchangeRate() throws ExchangeRateException {
+  public boolean getExchangeRate(String livePrefix) throws ExchangeRateException {
 
     String test = EarnExchangeRate(livePrefix);
     return test.equals("success");

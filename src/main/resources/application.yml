@@ -3,3 +3,10 @@ server:
 
 exchangeRate:
   key: b31c4166759548a169cd2a296d7c97e0
+
+exchangeRateEndpoint: "http://api.currencylayer.com"
+livePrefix: "/live"
+historicalPrefix: "/historical"
+convertPrefix: "/convert"
+timeframePrefix: "/timeframe"
+changePrefix: "/change"
