@@ -56,8 +56,8 @@ public class ExchangeRateControllerTest {
   private final String URI_TEMPLATE = "/";
   private MockMvc mockMvc;
 
-  private RestDocumentationResultHandler document;
-  private final String DOCUMENT_IDENTIFIER = "{class-name}/{method-name}";
+  private RestDocumentationResultHandler document; // 외부 directory(target/generated-sources)에
+  private final String DOCUMENT_IDENTIFIER = "{class-name}/{method-name}"; // class-name의 method-name으로 매핑할것임
 
   @BeforeEach
   void setUp(WebApplicationContext webApplicationContext,
@@ -82,7 +82,9 @@ public class ExchangeRateControllerTest {
   void getExchangeRateTest() throws Exception {
 
     this.mockMvc
-        .perform(get(URI_TEMPLATE + "?fromSend=usd&toSend=Krw")
+        .perform(get(URI_TEMPLATE)
+            .param("fromSend", "usd")
+            .param("toSend", "Krw")
             .contentType(MediaType.APPLICATION_JSON))
         .andDo(print())
         .andExpect(status().isOk())
