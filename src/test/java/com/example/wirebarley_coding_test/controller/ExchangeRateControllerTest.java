@@ -8,8 +8,10 @@ import static org.springframework.restdocs.operation.preprocess.Preprocessors.pr
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.payload.PayloadDocumentation.subsectionWithPath;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,7 +31,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
-import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -81,7 +82,7 @@ public class ExchangeRateControllerTest {
   void getExchangeRateTest() throws Exception {
 
     this.mockMvc
-        .perform(RestDocumentationRequestBuilders.get(URI_TEMPLATE + "?fromSend=usd&toSend=Krw")
+        .perform(get(URI_TEMPLATE + "?fromSend=usd&toSend=Krw")
             .contentType(MediaType.APPLICATION_JSON))
         .andDo(print())
         .andExpect(status().isOk())
@@ -89,7 +90,7 @@ public class ExchangeRateControllerTest {
             parameterWithName("fromSend").description("수취 전 통화 타입"),
             parameterWithName("toSend").description("수취 후 통화 타입")
             ), responseFields(
-            fieldWithPath("data").type(JsonFieldType.OBJECT).description("데이터").optional(),
+            subsectionWithPath("data").type(JsonFieldType.OBJECT).description("데이터").optional(),
             fieldWithPath("code").type(JsonFieldType.STRING).description("응답 코드"),
             fieldWithPath("message").type(JsonFieldType.STRING).description("응답 코드 상세 메세지"))
         ));
@@ -116,7 +117,7 @@ public class ExchangeRateControllerTest {
             fieldWithPath("toSend").description("수취 후 통화 타입"),
             fieldWithPath("receptionMoney").description("송금액")
             ), responseFields(
-            fieldWithPath("data").type(JsonFieldType.OBJECT).description("데이터").optional(),
+            subsectionWithPath("data").type(JsonFieldType.OBJECT).description("데이터").optional(),
             fieldWithPath("code").type(JsonFieldType.STRING).description("응답 코드"),
             fieldWithPath("message").type(JsonFieldType.STRING).description("응답 코드 상세 메세지"))
         ));
