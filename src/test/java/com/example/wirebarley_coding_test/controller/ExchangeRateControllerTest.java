@@ -33,13 +33,13 @@ import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.restdocs.payload.JsonFieldType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-@ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-@WebMvcTest(ExchangeRateController.class)
+@ExtendWith({RestDocumentationExtension.class})
+@WebMvcTest(ExchangeRateController.class) // ExchangeRateController 만 주입받음, 연관관계 있는건 별도로 주입해야함
+//@SpringBootTest // 전체 Bean 주입받으므로 , 전부 Autowired 선언했을 때 사용 가능
 @Import(ExchangeRateController.class)
 @AutoConfigureRestDocs
 public class ExchangeRateControllerTest {
