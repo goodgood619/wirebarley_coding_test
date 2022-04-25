@@ -3,6 +3,8 @@ package com.example.wirebarley_coding_test.advice;
 import com.example.wirebarley_coding_test.exception.CommonException;
 import com.example.wirebarley_coding_test.exception.InvalidInputValueException.InvalidInputValueExceptionCode;
 import com.example.wirebarley_coding_test.util.CommonResponse;
+import com.example.wirebarley_coding_test.util.CommonResponseCode;
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +32,13 @@ public class CommonExceptionHandler {
       MethodArgumentNotValidException e) {
     logger.warn("validationErrorHandler : " + e.toString());
     return new CommonResponse<>(InvalidInputValueExceptionCode.INVALID_INPUT_VALUE);
+  }
+
+  @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+  @ExceptionHandler(value = IOException.class)
+  public CommonResponse<?> ioErrorHandler(HttpServletRequest req, Exception e) {
+    logger.error("error at : [" + e.getClass().getName() + "]", e);
+    return new CommonResponse<>(CommonResponseCode.FAIL);
   }
 
 

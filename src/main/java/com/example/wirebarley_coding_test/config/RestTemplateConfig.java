@@ -1,5 +1,6 @@
 package com.example.wirebarley_coding_test.config;
 
+import com.example.wirebarley_coding_test.advice.RestTemplateResponseErrorhandler;
 import com.example.wirebarley_coding_test.interceptor.RestTemplateLoggingInterceptor;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -33,6 +34,7 @@ public class RestTemplateConfig {
           return new BufferingClientHttpRequestFactory(factory);
         })
         .additionalInterceptors(new RestTemplateLoggingInterceptor())
+        .errorHandler(new RestTemplateResponseErrorhandler())
         .build();
   }
 
